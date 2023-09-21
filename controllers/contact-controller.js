@@ -4,8 +4,12 @@ import Contact from "../models/Contact.js";
 
 const getAll = async (req, res) => {
   const { _id: owner } = req.user;
+  const { favorite, page = 1, limit = 10 } = req.query;
 
-  const result = await Contact.find({ owner });
+  const skip = (page - 1) * limit;
+
+  const result = await Contact.find(favorite ? { owner, favorite } : { owner }).skip(skip).limit(limit);
+
   res.json(result);
 };
 
