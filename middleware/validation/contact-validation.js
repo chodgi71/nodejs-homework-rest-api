@@ -10,6 +10,7 @@ const favoriteUpdateValidate = validateBody(
 
 const userSignupValidate = validateBody(authSchemas.signupSchema);
 const userSigninValidate = validateBody(authSchemas.signinSchema);
+const userUpdateValidate = validateBody(authSchemas.updateSchema);
 
 export default {
   contactAddValidate,
@@ -17,4 +18,5 @@ export default {
   favoriteUpdateValidate,
   userSignupValidate,
   userSigninValidate,
+  userUpdateValidate,
 };
