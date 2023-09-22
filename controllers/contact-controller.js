@@ -3,7 +3,13 @@ import { HttpError } from "../helpers/index.js";
 import Contact from "../models/Contact.js";
 
 const getAll = async (req, res) => {
-  const result = await Contact.find();
+  const { _id: owner } = req.user;
+  const { favorite, page = 1, limit = 10 } = req.query;
+
+  const skip = (page - 1) * limit;
+
+  const result = await Contact.find(favorite ? { owner, favorite } : { owner }).skip(skip).limit(limit);
+
   res.json(result);
 };
 
@@ -18,8 +24,8 @@ const getById = async (req, res) => {
 };
 
 const add = async (req, res) => {
-  const { body } = req;
-  const result = await Contact.create(body);
+  const { _id: owner } = req.user;
+  const result = await Contact.create({ ...req.body, owner });
 
   res.status(201).json(result);
 };
