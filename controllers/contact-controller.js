@@ -8,7 +8,9 @@ const getAll = async (req, res) => {
 
   const skip = (page - 1) * limit;
 
-  const result = await Contact.find(favorite ? { owner, favorite } : { owner }).skip(skip).limit(limit);
+  const result = await Contact.find(favorite ? { owner, favorite } : { owner })
+    .skip(skip)
+    .limit(limit);
 
   res.json(result);
 };
@@ -26,7 +28,6 @@ const getById = async (req, res) => {
 const add = async (req, res) => {
   const { _id: owner } = req.user;
   const result = await Contact.create({ ...req.body, owner });
-
   res.status(201).json(result);
 };
 

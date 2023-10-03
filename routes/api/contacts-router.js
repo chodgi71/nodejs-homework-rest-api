@@ -3,7 +3,6 @@ import contactsController from "../../controllers/contact-controller.js";
 import validates from "../../middleware/validation/contact-validation.js";
 import authenticate from "../../middleware/authenticate.js";
 
-
 const contactRouter = express.Router();
 
 contactRouter.use(authenticate);
