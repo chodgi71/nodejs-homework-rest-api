@@ -120,7 +120,7 @@ const verify = async (req, res) => {
     user._id,
     {
       verify: true,
-      verificationCode: "",
+      verificationCode: null,
     },
     { new: true }
   );
