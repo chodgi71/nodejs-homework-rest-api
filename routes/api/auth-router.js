@@ -18,4 +18,8 @@ authRouter.patch("/current", authenticate, validates.userUpdateValidate, authCon
 
 authRouter.patch("/avatars",upload.single('avatarURL'), authenticate, authController.updateAvatar);
 
+authRouter.get("/verify/:verificationCode", authController.verify);
+
+authRouter.post("/verify", authController.resendVerify);
+
 export default authRouter;
